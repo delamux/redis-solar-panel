@@ -27,6 +27,16 @@ const getKey = key => `${prefix}:${key}`;
  */
 const getTemporaryKey = () => getKey(`tmp:${shortId.generate()}`);
 
+
+/**
+ * Takes the prefix of the site ID stored
+ *
+ * Redis type stored at this key: hash
+ *
+ * @returns - prefix for all the sites id stored.
+ */
+const getSiteHashPrefix = () => getKey(`sites:info:`)
+
 /**
  * Takes a numeric site ID and returns the site information key
  * value for that ID.
@@ -172,6 +182,7 @@ const setPrefix = (newPrefix) => {
 
 module.exports = {
   getTemporaryKey,
+  getSiteHashPrefix,
   getSiteHashKey,
   getSiteIDsKey,
   getSiteStatsKey,
