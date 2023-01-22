@@ -59,6 +59,9 @@ const insertMetric = async (siteId, metricValue, metricName, timestamp) => {
   const minuteOfDay = timeUtils.getMinuteOfDay(timestamp);
 
   // START Challenge #2
+  const formattedMeasure = formatMeasurementMinute(metricValue, minuteOfDay);
+  await client.zaddAsync(metricKey, minuteOfDay, formattedMeasure);
+  await client.expireAsync(metricKey, metricExpirationSeconds);
   // END Challenge #2
 };
 /* eslint-enable */
