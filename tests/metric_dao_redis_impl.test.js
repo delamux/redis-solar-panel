@@ -19,8 +19,6 @@ const sampleReadings = [];
 /* eslint-disable no-undef */
 
 beforeAll(() => {
-  jest.setTimeout(60000);
-
   // Create the sample data.
   let time = timeUtils.getCurrentTimestamp();
 
@@ -38,6 +36,7 @@ beforeAll(() => {
     // Set time to one minute earlier.
     time -= 60;
   }
+
 });
 
 afterEach(async () => {
@@ -78,18 +77,12 @@ const testInsertAndRetrieve = async (limit) => {
 };
 
 // This test is for Challenge #2.
-test(`${testSuiteName}: test 1 reading`, async () => {
-  testInsertAndRetrieve(1)
-});
+test(`${testSuiteName}: test 1 reading`, async () => testInsertAndRetrieve(1));
 
 // This test is for Challenge #2.
-test(`${testSuiteName}: test 1 day of readings`, async () => {
-  testInsertAndRetrieve(60 * 24)
-});
+test(`${testSuiteName}: test 1 day of readings`, async () => testInsertAndRetrieve(60 * 24));
 
 // This test is for Challenge #2.
-test(`${testSuiteName}: test multiple days of readings`, async () => {
-  testInsertAndRetrieve(60 * 70)
-});
+test(`${testSuiteName}: test multiple days of readings`, async () => await testInsertAndRetrieve(60 * 70));
 
 /* eslint-enable */

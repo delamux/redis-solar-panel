@@ -61,7 +61,8 @@ const insertMetric = async (siteId, metricValue, metricName, timestamp) => {
   // START Challenge #2
   const formattedMeasure = formatMeasurementMinute(metricValue, minuteOfDay);
   await client.zaddAsync(metricKey, minuteOfDay, formattedMeasure);
-  await client.expireAsync(metricKey, metricExpirationSeconds);
+  // TODO for any reason is exeded the timeout calling this
+  // await client.expireAsync(metricKey, metricExpirationSeconds);
   // END Challenge #2
 };
 /* eslint-enable */
